@@ -18,13 +18,20 @@
         }
     </style>
     <script>
-        var insertTreasureTableValue = async (challenge, treasure_type,)=>{
+        var insertTreasureTableValue = async (challenge, treasure_type, probability_min_val, probability_max_val, coin_type,
+                                             coin_dice_number, coin_dice_size, valuable_value, valuables_dice_number,
+                                             valuables_dice_size, primary_magic, primary_magic_dice_number, primary_magic_dice_size,
+                                             secondary_magic, secondary_magic_dice_number, secondary_magic_dice_size)=>{
             // instantiate a headers object
             var myHeaders = new Headers();
             // add content type header to object
             myHeaders.append("Content-Type", "application/json");
             // using built in JSON utility package turn object to string and store in a variable
-            var raw = JSON.stringify({"min_val":min_val,"max_val":max_val});
+            var raw = JSON.stringify({"challenge": challenge, "treasure_type": treasure_type, "probability_min_val": probability_min_val, "probability_max_val":probability_max_val, 
+                                      "coin_type": coin_type, "coin_dice_number":coin_dice_number, "coin_dice_size":coin_dice_size, "valuable_value":valuable_value, 
+                                      "valuables_dice_number":valuables_dice_number, "valuables_dice_size":valuables_dice_size, "primary_magic":primary_magic, 
+                                      "primary_magic_dice_number":primary_magic_dice_number, "primary_magic_dice_size":primary_magic_dice_size, "secondary_magic":secondary_magic, 
+                                      "secondary_magic_dice_number":secondary_magic_dice_number, "secondary_magic_dice_size":secondary_magic_dice_size});
             // create a JSON object with parameters for API call and store in a variable
             var requestOptions = {
                 method: 'POST',
@@ -66,13 +73,16 @@
             <option value="11-16">11-16</option>
             <option value="17+">17+</option>
         </select><br>
+            
         <label for="treasure_type" class="form-lable">Type :</label>
         <select id="treasure_type" name="treasure_type">
             <option value="individual">Individual</option>
             <option value="hoard">Hoard</option>
         </select><br>
+            
         <label class="form-lable">Probability Min :</label>
         <input type="number" id="probability_min_val"><br>
+            
         <label class="form-lable">Probability Max :</label>
         <input type="number" id="probability_max_val"><br>
         
