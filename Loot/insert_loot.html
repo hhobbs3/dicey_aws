@@ -44,7 +44,7 @@
             var dice_response;
             
             // make API call with parameters and use promises to get response
-            const response = await fetch("https://v0uoqfrac7.execute-api.us-east-1.amazonaws.com/dev", requestOptions)
+            const response = await fetch("https://bmv6vzzbuk.execute-api.us-east-1.amazonaws.com/dev", requestOptions)
             .then(res => res.json())
             .then(data => dice_response = data)
             .then(() => console.log(dice_response))
@@ -53,16 +53,17 @@
             //console.log(dice_response);
             //console.log(dice_response['body']);
             
-            let str = document.getElementById("dice1").innerHTML; 
+            let str = document.getElementById("challenge").innerHTML; 
             console.log(str);
             console.log(response);
             console.log(dice_response);
-            document.getElementById("dice1").innerHTML = str.replace(str, dice_response["body"]);
+            document.getElementById("challenge").innerHTML = str.replace(str, dice_response["body"]);
+			alert(str);
         }
     </script>
 </head>
 <body>
-    <h>Treasure</h>
+    <h1 class="centered_header">Treasure</h1>
     <div class="container">
     <form>
         <div class="mb-3">
@@ -81,10 +82,10 @@
         </select><br>
             
         <label class="form-lable">Probability Min :</label>
-        <input type="number" id="probability_min_val"><br>
+        <input type="number" id="probability_min_val" value=0 min=0><br>
             
         <label class="form-lable">Probability Max :</label>
-        <input type="number" id="probability_max_val"><br>
+        <input type="number" id="probability_max_val" value=0 min=0><br>
         
         <label for="coin_type" class="form-lable">Coin Type :</label>
         <select id="coin_type" name="coin_type">
@@ -95,19 +96,19 @@
         </select><br>
         
         <label class="form-lable">Dice Rolled for Coin Amount :</label>
-        <input type="number" id="coin_dice_number"><br>
+        <input type="number" id="coin_dice_number" value=0 min=0><br>
         
         <label class="form-lable">Dice Size for Coin Amount :</label>
-        <input type="number" id="coin_dice_size"><br>
+        <input type="number" id="coin_dice_size" value=0 min=0><br>
         
         <label class="form-lable">Value of each Valuable Object :</label>
-        <input type="number" id="valuable_value"><br>
+        <input type="number" id="valuable_value" value=0 min=0><br>
         
         <label class="form-lable">Dice Rolled for Valuables :</label>
-        <input type="number" id="valuables_dice_number"><br>
+        <input type="number" id="valuables_dice_number" value=0 min=0><br>
         
         <label class="form-lable">Dice Size for Valuables :</label>
-        <input type="number" id="valuables_dice_size"><br>
+        <input type="number" id="valuables_dice_size" value=0 min=0><br>
         
         <label for="primary_magic" class="form-lable">Primary Magic Item Table :</label>
         <select id="primary_magic" name="primary_magic">
@@ -124,10 +125,10 @@
         </select><br>
         
         <label class="form-lable">Dice Rolled for Primary Magic : </label>
-        <input type="number" id="primary_magic_dice_number"><br>
+        <input type="number" id="primary_magic_dice_number" value=0 min=0><br>
         
         <label class="form-lable">Dice Size for Primary Magic :</label>
-        <input type="number" id="primary_magic_dice_size"><br>
+        <input type="number" id="primary_magic_dice_size" value=0 min=0><br>
         
         <label for="secondary_magic" class="form-lable">Secondary Magic Item Table :</label>
         <select id="secondary_magic" name="secondary_magic">
@@ -144,14 +145,30 @@
         </select><br>
         
         <label class="form-lable">Dice Rolled for Primary Magic : </label>
-        <input type="number" id="secondary_magic_dice_number"><br>
+        <input type="number" id="secondary_magic_dice_number" value=0 min=0><br>
         
         <label class="form-lable">Dice Size for Primary Magic :</label>
-        <input type="number" id="secondary_magic_dice_size"><br>
+        <input type="number" id="secondary_magic_dice_size" value=0 min=0><br>
         </div>
 
         <!-- set button onClick method to call function we defined passing input values as parameters -->
-        <button type="button" onclick="callAPI(document.getElementById('fName').value,document.getElementById('lName').value)">Call API</button>
+		<button type="button" onclick="insertTreasureTableValue(document.getElementById('challenge').value, 
+																document.getElementById('treasure_type').value,
+																document.getElementById('probability_min_val').value,
+																document.getElementById('probability_max_val').value,
+																document.getElementById('coin_type').value,
+																document.getElementById('coin_dice_number').value,
+																document.getElementById('coin_dice_size').value,
+																document.getElementById('valuable_value').value,
+																document.getElementById('valuables_dice_number').value,
+																document.getElementById('valuables_dice_size').value,
+																document.getElementById('primary_magic').value,
+																document.getElementById('primary_magic_dice_number').value,
+																document.getElementById('primary_magic_dice_size').value,
+																document.getElementById('secondary_magic').value,
+																document.getElementById('secondary_magic_dice_number').value,
+																document.getElementById('secondary_magic_dice_size').value)"
+																>Insert Treasure Table Value</button>
     </form>
     </div>
     
